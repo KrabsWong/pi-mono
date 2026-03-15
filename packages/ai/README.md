@@ -67,6 +67,7 @@ Unified LLM API with automatic model discovery, provider configuration, token an
 - **OpenCode Zen**
 - **OpenCode Go**
 - **Kimi For Coding** (Moonshot AI, uses Anthropic-compatible API)
+- **Tencent Coding Plan** (GLM-5, Kimi-K2.5, MiniMax-M2.5, Hunyuan models)
 - **Any OpenAI-compatible API**: Ollama, vLLM, LM Studio, etc.
 
 ## Installation
@@ -918,6 +919,7 @@ In Node.js environments, you can set environment variables to avoid passing API 
 | MiniMax | `MINIMAX_API_KEY` |
 | OpenCode Zen / OpenCode Go | `OPENCODE_API_KEY` |
 | Kimi For Coding | `KIMI_API_KEY` |
+| Tencent Coding Plan | `TENCENT_CODING_API_KEY` |
 | GitHub Copilot | `COPILOT_GITHUB_TOKEN` or `GH_TOKEN` or `GITHUB_TOKEN` |
 
 When set, the library automatically uses these keys:

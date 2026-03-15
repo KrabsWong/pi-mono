@@ -398,6 +398,13 @@ function buildParams(model: Model<"openai-completions">, context: Context, optio
 		(params as any).enable_thinking = !!options?.reasoningEffort;
 	} else if (compat.thinkingFormat === "qwen-chat-template" && model.reasoning) {
 		(params as any).chat_template_kwargs = { enable_thinking: !!options?.reasoningEffort };
+	} else if (compat.thinkingFormat === "tencent" && model.reasoning && options?.reasoningEffort) {
+		// Tencent Coding format: thinking: { type: "enabled", budgetTokens: number }
+		const budgetMap: Record<string, number> = { minimal: 512, low: 1024, medium: 2048, high: 4096, xhigh: 8192 };
+		(params as any).thinking = {
+			type: "enabled",
+			budgetTokens: budgetMap[options.reasoningEffort] ?? 1024,
+		};
 	} else if (options?.reasoningEffort && model.reasoning && compat.supportsReasoningEffort) {
 		// OpenAI-style reasoning_effort
 		(params as any).reasoning_effort = mapReasoningEffort(options.reasoningEffort, compat.reasoningEffortMap);
@@ -763,6 +770,7 @@ function detectCompat(model: Model<"openai-completions">): Required<OpenAIComple
 	const baseUrl = model.baseUrl;
 
 	const isZai = provider === "zai" || baseUrl.includes("api.z.ai");
+	const isTencentCoding = provider === "tencent-coding" || baseUrl.includes("api.lkeap.cloud.tencent.com/coding");
 
 	const isNonStandard =
 		provider === "cerebras" ||
@@ -773,7 +781,8 @@ function detectCompat(model: Model<"openai-completions">): Required<OpenAIComple
 		baseUrl.includes("deepseek.com") ||
 		isZai ||
 		provider === "opencode" ||
-		baseUrl.includes("opencode.ai");
+		baseUrl.includes("opencode.ai") ||
+		isTencentCoding;
 
 	const useMaxTokens = baseUrl.includes("chutes.ai");
 
@@ -800,7 +809,7 @@ function detectCompat(model: Model<"openai-completions">): Required<OpenAIComple
 		requiresToolResultName: false,
 		requiresAssistantAfterToolResult: false,
 		requiresThinkingAsText: false,
-		thinkingFormat: isZai ? "zai" : "openai",
+		thinkingFormat: isZai ? "zai" : isTencentCoding ? "tencent" : "openai",
 		openRouterRouting: {},
 		vercelGatewayRouting: {},
 		supportsStrictMode: true,

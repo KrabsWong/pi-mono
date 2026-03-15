@@ -1251,6 +1251,127 @@ async function generateModels() {
 	];
 	allModels.push(...antigravityModels);
 
+	// Tencent Coding Plan models
+	// OpenAI-compatible API with custom thinking format
+	const TENCENT_CODING_BASE_URL = "https://api.lkeap.cloud.tencent.com/coding/v3";
+	const tencentCodingModels: Model<"openai-completions">[] = [
+		{
+			id: "tc-code-latest",
+			name: "Tencent Coding (Auto)",
+			api: "openai-completions",
+			provider: "tencent-coding",
+			baseUrl: TENCENT_CODING_BASE_URL,
+			reasoning: true,
+			input: ["text", "image"],
+			cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+			contextWindow: 128000,
+			maxTokens: 8192,
+			compat: {
+				thinkingFormat: "tencent",
+			},
+		},
+		{
+			id: "hunyuan-2.0-instruct",
+			name: "Tencent HY 2.0 Instruct",
+			api: "openai-completions",
+			provider: "tencent-coding",
+			baseUrl: TENCENT_CODING_BASE_URL,
+			reasoning: false,
+			input: ["text", "image"],
+			cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+			contextWindow: 128000,
+			maxTokens: 8192,
+		},
+		{
+			id: "hunyuan-2.0-thinking",
+			name: "Tencent HY 2.0 Think",
+			api: "openai-completions",
+			provider: "tencent-coding",
+			baseUrl: TENCENT_CODING_BASE_URL,
+			reasoning: true,
+			input: ["text", "image"],
+			cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+			contextWindow: 128000,
+			maxTokens: 8192,
+			compat: {
+				thinkingFormat: "tencent",
+			},
+		},
+		{
+			id: "glm-5",
+			name: "GLM-5",
+			api: "openai-completions",
+			provider: "tencent-coding",
+			baseUrl: TENCENT_CODING_BASE_URL,
+			reasoning: true,
+			input: ["text"],
+			cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+			contextWindow: 128000,
+			maxTokens: 8192,
+			compat: {
+				thinkingFormat: "tencent",
+			},
+		},
+		{
+			id: "kimi-k2.5",
+			name: "Kimi-K2.5",
+			api: "openai-completions",
+			provider: "tencent-coding",
+			baseUrl: TENCENT_CODING_BASE_URL,
+			reasoning: true,
+			input: ["text", "image"],
+			cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+			contextWindow: 256000,
+			maxTokens: 8192,
+			compat: {
+				thinkingFormat: "tencent",
+			},
+		},
+		{
+			id: "minimax-m2.5",
+			name: "MiniMax-M2.5",
+			api: "openai-completions",
+			provider: "tencent-coding",
+			baseUrl: TENCENT_CODING_BASE_URL,
+			reasoning: true,
+			input: ["text"],
+			cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+			contextWindow: 128000,
+			maxTokens: 8192,
+			compat: {
+				thinkingFormat: "tencent",
+			},
+		},
+		{
+			id: "hunyuan-t1",
+			name: "Hunyuan-T1",
+			api: "openai-completions",
+			provider: "tencent-coding",
+			baseUrl: TENCENT_CODING_BASE_URL,
+			reasoning: true,
+			input: ["text"],
+			cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+			contextWindow: 128000,
+			maxTokens: 8192,
+			compat: {
+				thinkingFormat: "tencent",
+			},
+		},
+		{
+			id: "hunyuan-turbos",
+			name: "Hunyuan-TurboS",
+			api: "openai-completions",
+			provider: "tencent-coding",
+			baseUrl: TENCENT_CODING_BASE_URL,
+			reasoning: false,
+			input: ["text", "image"],
+			cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
+			contextWindow: 128000,
+			maxTokens: 8192,
+		},
+	];
+	allModels.push(...tencentCodingModels);
+
 	const VERTEX_BASE_URL = "https://{location}-aiplatform.googleapis.com";
 	const vertexModels: Model<"google-vertex">[] = [
 		{

@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- Added support for Tencent Coding Plan provider with models: tc-code-latest, hunyuan-2.0-instruct, hunyuan-2.0-thinking, glm-5, kimi-k2.5, minimax-m2.5, hunyuan-t1, hunyuan-turbos. Supports custom thinking format via `TENCENT_CODING_API_KEY` environment variable.
+
 ## [0.58.1] - 2026-03-14
 
 ### Fixed
