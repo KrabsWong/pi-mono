@@ -1256,21 +1256,6 @@ async function generateModels() {
 	const TENCENT_CODING_BASE_URL = "https://api.lkeap.cloud.tencent.com/coding/v3";
 	const tencentCodingModels: Model<"openai-completions">[] = [
 		{
-			id: "tc-code-latest",
-			name: "Tencent Coding (Auto)",
-			api: "openai-completions",
-			provider: "tencent-coding",
-			baseUrl: TENCENT_CODING_BASE_URL,
-			reasoning: true,
-			input: ["text", "image"],
-			cost: { input: 0, output: 0, cacheRead: 0, cacheWrite: 0 },
-			contextWindow: 128000,
-			maxTokens: 8192,
-			compat: {
-				thinkingFormat: "tencent",
-			},
-		},
-		{
 			id: "hunyuan-2.0-instruct",
 			name: "Tencent HY 2.0 Instruct",
 			api: "openai-completions",

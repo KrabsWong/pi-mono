@@ -10638,24 +10638,6 @@ export const MODELS = {
 			contextWindow: 128000,
 			maxTokens: 8192,
 		} satisfies Model<"openai-completions">,
-		"tc-code-latest": {
-			id: "tc-code-latest",
-			name: "Tencent Coding (Auto)",
-			api: "openai-completions",
-			provider: "tencent-coding",
-			baseUrl: "https://api.lkeap.cloud.tencent.com/coding/v3",
-			compat: {"thinkingFormat":"tencent"},
-			reasoning: true,
-			input: ["text", "image"],
-			cost: {
-				input: 0,
-				output: 0,
-				cacheRead: 0,
-				cacheWrite: 0,
-			},
-			contextWindow: 128000,
-			maxTokens: 8192,
-		} satisfies Model<"openai-completions">,
 	},
 	"vercel-ai-gateway": {
 		"alibaba/qwen-3-14b": {
